@@ -6,7 +6,7 @@ from unittest.mock import patch, Mock, PropertyMock
 
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError, RedirectWarning
-from odoo.addons.payment_payu import const
+from odoo.addons.payu_payments_for_odoo import const
 
 class TestPayUPaymentProvider(TransactionCase):
 
@@ -79,7 +79,7 @@ class TestPayUPaymentProvider(TransactionCase):
         self.assertIsInstance(hash_val, str)
         self.assertEqual(len(hash_val), 128)  # sha512 length
 
-    @patch('odoo.addons.payment_payu.models.payment_provider.requests.post')
+    @patch('odoo.addons.payu_payments_for_odoo.models.payment_provider.requests.post')
     def test_payu_make_post_request(self, mock_post):
         mock_resp = Mock()
         mock_resp.status_code = 200
@@ -93,7 +93,7 @@ class TestPayUPaymentProvider(TransactionCase):
         )
         self.assertEqual(result['status'], 'success')
 
-    @patch('odoo.addons.payment_payu.models.payment_provider.requests.get')
+    @patch('odoo.addons.payu_payments_for_odoo.models.payment_provider.requests.get')
     def test_payu_make_get_request_with_token(self, mock_get):
         mock_resp = Mock()
         mock_resp.status_code = 200
@@ -109,7 +109,7 @@ class TestPayUPaymentProvider(TransactionCase):
         )
         self.assertEqual(result['result'], 'ok')
 
-    @patch('odoo.addons.payment_payu.models.payment_provider.requests.post')
+    @patch('odoo.addons.payu_payments_for_odoo.models.payment_provider.requests.post')
     def test_payu_make_request_http_error(self, mock_post):
         mock_resp = Mock()
         mock_resp.raise_for_status.side_effect = HTTPError("HTTP Error")

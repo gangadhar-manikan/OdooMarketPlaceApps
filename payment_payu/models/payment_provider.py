@@ -11,7 +11,7 @@ from urllib.parse import parse_qsl
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError, RedirectWarning
 
-from odoo.addons.payment_payu import const
+from odoo.addons.payu_payments_for_odoo import const
 
 _logger = logging.getLogger(__name__)
 

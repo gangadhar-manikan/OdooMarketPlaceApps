@@ -39,7 +39,7 @@
             <xpath expr="//page[@name='credentials']/group" position="after">
 
                 <group invisible="code != 'payu' or state == 'disabled'">
-                    <field name="payu_credential_ids" mode="list,form" options="{'list_view_ref': 'payment_payu.view_payu_credential_list', 'form_view_ref': 'payment_payu.view_payu_credential_form'}"/>
+                    <field name="payu_credential_ids" mode="list,form" options="{'list_view_ref': 'payu_payments_for_odoo.view_payu_credential_list', 'form_view_ref': 'payu_payments_for_odoo.view_payu_credential_form'}"/>
                     
                     <!-- Save Credentials button -->
                     <button string="Save Credentials" type="object"

@@ -1,4 +1,4 @@
-# payment_payu/controllers/main.py
+# payu_payments_for_odoo/controllers/main.py
 import logging
 
 from odoo import http

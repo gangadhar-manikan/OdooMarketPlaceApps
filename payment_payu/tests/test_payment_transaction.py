@@ -8,7 +8,7 @@ from collections import namedtuple
 
 from odoo.addons.website.tools import MockRequest
 
-from odoo.addons.payment_payu.models.payment_transaction import PaymentTransaction
+from odoo.addons.payu_payments_for_odoo.models.payment_transaction import PaymentTransaction
 
 Product = namedtuple('Product', ['default_code', 'name', 'id'])
 OrderLine = namedtuple('OrderLine', ['product_id', 'price_total', 'product_uom_qty'])
@@ -28,7 +28,7 @@ class TestPayUPaymentTransaction(TransactionCase):
             'phone': '9999999999',
         })
 
-        self.provider = self.env.ref('payment_payu.payment_provider_payu')
+        self.provider = self.env.ref('payu_payments_for_odoo.payment_provider_payu')
         self.provider.write({'state': 'test'})
         payment_method = self.provider.payment_method_ids and self.provider.payment_method_ids[0] or None
 
@@ -116,16 +116,16 @@ class TestPayUPaymentTransaction(TransactionCase):
         self.tx._process_notification_data(None)
         mocked.assert_called_once_with()
 
-    @patch("odoo.addons.payment_payu.models.payment_transaction.PaymentTransaction._payu_verify_return_sign")
-    @patch("odoo.addons.payment_payu.models.payment_transaction.PaymentTransaction._handle_success_status")
+    @patch("odoo.addons.payu_payments_for_odoo.models.payment_transaction.PaymentTransaction._payu_verify_return_sign")
+    @patch("odoo.addons.payu_payments_for_odoo.models.payment_transaction.PaymentTransaction._handle_success_status")
     def test_process_notification_data_success(self, mocked_handle, mocked_verify):
         self.tx.provider_code = "payu"
         data = {"mihpayid": "123", "status": "success", "hash": "abc"}
         self.tx._process_notification_data(data)
         mocked_handle.assert_called_once()
 
-    @patch("odoo.addons.payment_payu.models.payment_transaction.PaymentTransaction._handle_failure_status")
-    @patch("odoo.addons.payment_payu.models.payment_transaction.PaymentTransaction._payu_verify_return_sign")
+    @patch("odoo.addons.payu_payments_for_odoo.models.payment_transaction.PaymentTransaction._handle_failure_status")
+    @patch("odoo.addons.payu_payments_for_odoo.models.payment_transaction.PaymentTransaction._payu_verify_return_sign")
     def test_process_notification_data_failure(self, mocked_verify, mocked_handle):
         self.tx.provider_code = "payu"
         data = {"mihpayid": "123", "status": "failure", "hash": "abc"}
@@ -133,7 +133,7 @@ class TestPayUPaymentTransaction(TransactionCase):
         mocked_handle.assert_called_once()
 
     @patch("odoo.addons.payment.models.payment_transaction.PaymentTransaction._set_canceled")
-    @patch("odoo.addons.payment_payu.models.payment_transaction.PaymentTransaction._payu_verify_return_sign")
+    @patch("odoo.addons.payu_payments_for_odoo.models.payment_transaction.PaymentTransaction._payu_verify_return_sign")
     def test_process_notification_data_unknown_status(self, mocked_verify, mocked_canceled):
         self.tx.provider_code = "payu"
         data = {"mihpayid": "123", "status": "other", "hash": "abc"}
@@ -162,7 +162,7 @@ class TestPayUPaymentTransaction(TransactionCase):
         auth_header = self.tx.generate_authorization_header("fake_key", signature)
         self.assertIn('hmac username=', auth_header)
     
-    @patch('odoo.addons.payment_payu.models.payment_transaction.PaymentTransaction.env', create=True)
+    @patch('odoo.addons.payu_payments_for_odoo.models.payment_transaction.PaymentTransaction.env', create=True)
     def test_get_payu_credentials(self, mock_env):
         mock_pyu_cred_model = mock_env['payu.credential']
         mock_pyu_cred_model.search.return_value = [self.credential]

@@ -6,7 +6,7 @@
     'sequence': 1,
     'summary': 'PayU Payment Provider addon enables merchants to accept PayU hosted checkout payments with all methods, providing secure and flexible payment and finance solutions.',
     'description': "This module provides the integration of PayU as a payment provider in Odoo.",
-    'icon': '/payment_payu/static/description/icon.svg',
+    'icon': '/payu_payments_for_odoo/static/description/icon.svg',
     'author': 'PayU',
     'depends': ['payment','sale'],
     'data': [

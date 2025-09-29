@@ -10,7 +10,7 @@ It enables merchants to configure PayU credentials, process customer payments, a
 ```
 
 ## 📁 Project Structure
-payment_payu/
+payu_payments_for_odoo/
 │
 ├── const.py # Constants used across the module
 ├── init.py # Module initializer
@@ -63,7 +63,7 @@ payment_payu/
 
 1. **Clone or copy** this module into your Odoo custom addons directory:  
    Example:  
-   `C:\Odoo\custom-addons\payment_payu`
+   `C:\Odoo\custom-addons\payu_payments_for_odoo`
 
 2. **Update your `odoo.conf`** file to include the custom addons path:
 

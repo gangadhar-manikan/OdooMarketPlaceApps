@@ -5,7 +5,7 @@
         <field name="name">PayU</field>
         <field name="code">payu</field>
         <field name="sequence">1</field>
-        <field name="image" type="base64" file="payment_payu/static/description/icon.png"/>
+        <field name="image" type="base64" file="payu_payments_for_odoo/static/description/icon.png"/>
         <field name="support_refund">partial</field>
     </record>
 
@@ -13,8 +13,8 @@
         <field name="is_published">True</field>
         <field name="name">PayU</field>
         <field name="code">payu</field>
-        <field name="image_128" type="base64" file="payment_payu/static/description/icon.svg"/>
-        <field name="redirect_form_view_id" ref="payment_payu.payu_form"/>
+        <field name="image_128" type="base64" file="payu_payments_for_odoo/static/description/icon.svg"/>
+        <field name="redirect_form_view_id" ref="payu_payments_for_odoo.payu_form"/>
         <field name="payment_method_ids"
                eval="[Command.set([
                          ref('payment_method_payu'),
