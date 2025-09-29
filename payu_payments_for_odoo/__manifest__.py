@@ -8,7 +8,7 @@
     'description': "This module provides the integration of PayU as a payment provider in Odoo.",
     'icon': '/payu_payments_for_odoo/static/description/icon.svg',
     'author': 'PayU',
-    'depends': ['payment','sale'],
+    'depends': ['payment'],
     'data': [
         'views/payment_payu_templates.xml',
         'views/payment_provider_views.xml',
