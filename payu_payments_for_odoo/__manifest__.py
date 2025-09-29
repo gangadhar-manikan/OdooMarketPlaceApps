@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'data/ir_cron_payment_transaction.xml'
     ],
+    'images' : ['static/description/banner.png'],
     'test': ['tests/test_payment_provider.py',
              'tests/test_payment_transaction.py'],
     'post_init_hook': 'post_init_hook',
